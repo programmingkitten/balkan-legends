@@ -25,6 +25,7 @@ export default function CarController() {
 
     })
 
+
     function windResistenceHandler(number ) {
         const closest = Object.keys(windResistenceRations).reduce((a, b) => {
             return Math.abs(b - number) < Math.abs(a - number) ? b : a;
@@ -51,13 +52,16 @@ export default function CarController() {
     }
 
     function accelerationRpmCalculator(rpm, gasPower, horsePower, gear, maxRpm, speed) {
-        return (rpm + 
-        (Number(gasPower)
+        const bonus = (Number(gasPower)
         *horsePower
         *(0.07-(0.01*gear))
         *((rpm/maxRpm)))
         /gear
-        /windResistenceRations[windResistenceHandler(speed)])
+        /windResistenceRations[windResistenceHandler(speed)] 
+
+        const result = (rpm + bonus)
+        console.log(bonus)
+        return result
     }
 
     function gearUpHandler() {
