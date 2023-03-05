@@ -26,13 +26,21 @@ export default function CarController() {
     })
 
 
-    function windResistenceHandler(number ) {
-        const closest = Object.keys(windResistenceRations).reduce((a, b) => {
+    function nearestInAnArray(keys, number) {
+        const closest = keys.reduce((a, b) => {
             return Math.abs(b - number) < Math.abs(a - number) ? b : a;
         });
         console.log(closest)
         return closest
     }
+
+    // function windResistenceHandler(number ) {
+    //     const closest = Object.keys(windResistenceRations).reduce((a, b) => {
+    //         return Math.abs(b - number) < Math.abs(a - number) ? b : a;
+    //     });
+    //     console.log(closest)
+    //     return closest
+    // }
     const [speedHisotry, setSpeedHistory] = useState([]);
     const [gear, setGear] = useState(1)
     const [count, setCount] = useState(0)
@@ -41,11 +49,7 @@ export default function CarController() {
     const [horsePower, setHorsePower] = useState(500);
     const [rpm, setRpm] = useState(800);
     const [maxRpm, setMaxRpm] = useState(7000)
-    // function keyDownHandler(e) {
-    //     if (e.key === 'w') {
-    //        RpmSetter(rpm => rpm + 1)
-    //     }
-    // }; too fast
+
 
     function gearUpRpmCalculator(maxRpm, gearRatios, gear, speed) {
         return maxRpm/gearRatios[gear+1]*speed
@@ -57,7 +61,7 @@ export default function CarController() {
         *(0.07-(0.01*gear))
         *((rpm/maxRpm)))
         /gear
-        /windResistenceRations[windResistenceHandler(speed)] 
+        /windResistenceRations[nearestInAnArray(Object.keys(windResistenceRations),speed)] 
 
         const result = (rpm + bonus)
         console.log(bonus)
@@ -71,7 +75,6 @@ export default function CarController() {
             const rpmChange = gearUpRpmCalculator(maxRpm, gearRatios, gear, speed)
             setRpm(rpmChange)
             setGasPower(0)
-            windResistenceHandler(speed)
         }
     }
     
