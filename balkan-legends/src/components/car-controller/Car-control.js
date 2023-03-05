@@ -49,6 +49,16 @@ export default function CarController() {
         return maxRpm/gearRatios[gear+1]*speed
     }
 
+    function accelerationRpmCalculator(rpm, gasPower, horsePower, gear, maxRpm, speed) {
+        return (rpm + 
+        (Number(gasPower)
+        *horsePower
+        *(0.07-(0.01*gear))
+        *((rpm/maxRpm)))
+        /gear
+        /windResistenceRations[windResistenceHandler(speed)])
+    }
+
     function gearUpHandler() {
         if (gear < 6) {
             setGear(gear + 1)
@@ -65,11 +75,8 @@ export default function CarController() {
         const interval = setInterval(() => {
             setCount(count + 1);
             if (rpm < maxRpm && gasPower > 0) {
-                setRpm(rpm + 
-                    (Number(gasPower)
-                    *horsePower
-                    *(0.07
-                        -(0.01*gear))*((rpm/maxRpm)))/gear/windResistenceRations[windResistenceHandler(speed)])
+                const rpmAcceleration = accelerationRpmCalculator(rpm, gasPower, horsePower, gear, maxRpm, speed)
+                setRpm(rpmAcceleration)
             } 
             
             else if (gasPower==0 && rpm > 900) {
