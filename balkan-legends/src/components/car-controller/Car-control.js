@@ -101,7 +101,7 @@ export default function CarController() {
                 }
             }
 
-        }, 100);
+        }, 50);
   
         //Clearing the interval
         return () => clearInterval(interval);
@@ -110,12 +110,11 @@ export default function CarController() {
     
 
     return <div className={styles.game}>
-        <h1>ok</h1>
-        <label>{rpm.toFixed(0)}</label>
+        <label className={rpm < 5000 ? styles.lowSpeed : styles.highSpeed}>RPM:{rpm.toFixed(0) > 6999 ? "6950" : rpm.toFixed(0)}</label><br></br>
         <progress value={rpm} max={maxRpm}></progress>
         <input type="range" value={gasPower} onChange={(e) => setGasPower(e.target.value)}></input>
         <button onClick={gearUpHandler}>UP</button>
         <h1>Gear: {gear}</h1>
-        <h1>speed: {speed}</h1>
+        <h1>speed: {speed} km/h</h1>
         </div>
 }

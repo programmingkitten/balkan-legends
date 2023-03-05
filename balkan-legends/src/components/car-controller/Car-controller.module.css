@@ -9,5 +9,22 @@ h1 {
 .game {
     color: blue;
     height: 50vh;
-    background-color: rgba(0,0,0,.1);
+    margin-left: 30vw;
+    margin-top: 20vh;
+}
+
+label {
+    color: red;
+}
+
+.lowSpeed {
+    color: green;
+    font-size: calc(1vw + 1em);
+}
+
+.midSpeed {}
+
+.highSpeed {
+    color: red;
+    font-size: calc(1.3vw + 1.3em);
 }
