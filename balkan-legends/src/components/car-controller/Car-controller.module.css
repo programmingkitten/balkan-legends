@@ -1,0 +1,13 @@
+
+button {
+    height: 10vh;
+}
+
+h1 {
+}
+
+.game h1{
+    color: blue;
+    height: 50vh;
+    background-color: rgba(0,0,0,.1);
+}
