@@ -23,9 +23,14 @@ export default function CarController() {
             if (rpm >= maxRpm) {
                 setRpm(rpm => rpm-200)
                 console.log('interesting')
-            } else {
-            setRpm(rpm + (gasPower*horsePower*0.01))
-
+            } 
+            
+            else if (gasPower==0 && rpm > 900) {
+                setRpm(rpm-100)
+            }
+            
+            else {
+                setRpm(rpm + (gasPower*horsePower*0.06))
             }
         }, 100);
   
