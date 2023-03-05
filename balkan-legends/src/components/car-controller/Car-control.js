@@ -31,12 +31,12 @@ export default function CarController() {
         });
         return closest
     }
-
+    const [speedHisotry, setSpeedHistory] = useState([]);
     const [gear, setGear] = useState(1)
     const [count, setCount] = useState(0)
     const [gasPower, setGasPower] = useState(0)
-    const [speed, setSpeed] = useState(1)
-    const [horsePower, setHorsePower] = useState(100);
+    const [speed, setSpeed] = useState(2)
+    const [horsePower, setHorsePower] = useState(500);
     const [rpm, setRpm] = useState(800);
     const [maxRpm, setMaxRpm] = useState(7000)
     // function keyDownHandler(e) {
@@ -63,7 +63,7 @@ export default function CarController() {
         if (gear < 6) {
             setGear(gear + 1)
             // 4000, 150, 
-            const rpmChange = gearUpRpmCalculator(maxRpm, gearRatios, gear+1, speed)
+            const rpmChange = gearUpRpmCalculator(maxRpm, gearRatios, gear, speed)
             setRpm(rpmChange)
             setGasPower(0)
             windResistenceHandler(speed)
@@ -85,8 +85,15 @@ export default function CarController() {
             
             else {
             }
-
+            setSpeedHistory(oldArray => [...oldArray, speed])
+            console.log(speedHisotry[-2]+20, speedHisotry[-1])
+            if (speedHisotry.length > 2) {
+                if (speedHisotry.slice(-2)+20 > speedHisotry.slice(-1)) {
             setSpeed(Math.trunc((gearRatios[gear]/maxRpm) * rpm))
+
+                }
+            }
+
         }, 100);
   
         //Clearing the interval
