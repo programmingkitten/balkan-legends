@@ -16,12 +16,12 @@ export default function CarController() {
 
     const [windResistenceRations, setWindResistenceRations] = useState({
         40: 1,
-        60: 1.2,
-        100: 1.6,
-        140: 1.8,
-        160: 2.2,
-        200: 3,
-        220: 3.2,
+        60: 5,
+        100: 10,
+        140: 20,
+        160: 40,
+        200: 49,
+        220: 70,
 
     })
 
@@ -29,6 +29,7 @@ export default function CarController() {
         const closest = Object.keys(windResistenceRations).reduce((a, b) => {
             return Math.abs(b - number) < Math.abs(a - number) ? b : a;
         });
+        console.log(closest)
         return closest
     }
     const [speedHisotry, setSpeedHistory] = useState([]);
@@ -86,7 +87,6 @@ export default function CarController() {
             else {
             }
             setSpeedHistory(oldArray => [...oldArray, speed])
-            console.log(speedHisotry[-2]+20, speedHisotry[-1])
             if (speedHisotry.length > 2) {
                 if (speedHisotry.slice(-2)+20 > speedHisotry.slice(-1)) {
             setSpeed(Math.trunc((gearRatios[gear]/maxRpm) * rpm))
