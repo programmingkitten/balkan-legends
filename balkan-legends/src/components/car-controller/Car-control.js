@@ -45,11 +45,16 @@ export default function CarController() {
     //     }
     // }; too fast
 
+    function gearUpRpmCalculator(maxRpm, gearRatios, gear, speed) {
+        return maxRpm/gearRatios[gear+1]*speed
+    }
+
     function gearUpHandler() {
         if (gear < 6) {
             setGear(gear + 1)
             // 4000, 150, 
-            setRpm(maxRpm/gearRatios[gear+1]*speed)
+            const rpmChange = gearUpRpmCalculator(maxRpm, gearRatios, gear+1, speed)
+            setRpm(rpmChange)
             setGasPower(0)
             windResistenceHandler(speed)
         }
