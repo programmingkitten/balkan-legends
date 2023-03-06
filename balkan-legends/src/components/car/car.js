@@ -7,17 +7,19 @@ const animation = {
 }
 
 export default function Car(props) {
-    return <div className={styles.carWrapper}>
-        <div className={styles.car}>
-            <img src={golf5} alt="golf 5 car"></img>
-        </div>
-
-        <div className={[styles.rims]}>
-            <div className={styles[props.speed]}>
-                <img src={rims} alt="back tier rim" className={styles.frontTire} styles={{animation: "rotation 500ms infinite linear"}}></img>
-                <img src={rims} alt="front tier rim" className={styles.backTire}></img>
+    return <div>
+        <div className={styles[props.car]}>
+            <div className={[styles.car]}>
+                <img src={golf5} alt="golf 5 car"></img>
+                <div className={[styles.rims]}>
+                <div className={styles[props.speed]}>
+                    <img src={rims} alt="back tier rim" className={styles.frontTire}></img>
+                    <img src={rims} alt="front tier rim" className={styles.backTire}></img>
+                </div>
+                </div>
             </div>
         </div>
+       
 
         <styles></styles>
     </div>

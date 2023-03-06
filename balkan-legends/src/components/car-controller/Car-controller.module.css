@@ -9,7 +9,6 @@ h1 {
 .game {
     color: blue;
     height: 50vh;
-    margin-left: 30vw;
     margin-top: 20vh;
 }
 
@@ -29,13 +28,54 @@ label {
     font-size: calc(1.3vw + 1.3em);
 }
 
+.car {
+  position: absolute;
+  margin-bottom: 10vh;
+
+}
+
+.car h1 {
+  color: red;
+}
+
 .blinktext {
 	 animation: blink-text 400ms linear infinite;
      font-size: calc(1vw + 1em);
 
 }
 
+.car1 {
+  top: 10vh;
+  position: absolute;
+  background-color: black;
+}
+
+
 @keyframes blink-text {
     99% { color: rgb(255, 0, 0); opacity: 1; }
 	0% { color: rgb(255, 255, 255);opacity: 1; }
 }
+
+.road {
+  background-image: url('./images/road3.png');
+  width: 500%;
+  height: 450px;
+  background-repeat: repeat-x;
+  z-index: 1;
+  background-size: 20% 100%;
+  animation: road 5s linear infinite;
+  float: left;
+}
+
+.road2 {
+  animation: road 1s linear infinite;
+  background-color: black;
+
+}
+
+@keyframes road {
+  100% {
+    transform: translateX(-3800px);
+  }
+}
+

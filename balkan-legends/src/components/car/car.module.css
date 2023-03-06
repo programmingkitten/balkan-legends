@@ -2,13 +2,27 @@
     position: absolute;
 }
 
-.carWrapper {
-    position: relative;
-    margin-left: 30%;
-
+.first {
+    position: absolute;
+    left: 20vw;
 }
 
+.second {
+    position: absolute;
+    left: 10vw;
+    margin-top: 20vh;
+}
+
+.car2 {
+}
+
+
+
 .rims {
+    position: absolute;
+}
+
+img {
     position: absolute;
 }
 

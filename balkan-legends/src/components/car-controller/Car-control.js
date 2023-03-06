@@ -39,8 +39,8 @@ export default function CarController() {
         60: 5,
         100: 10,
         140: 20,
-        160: 40,
-        200: 49,
+        160: 30,
+        200: 35,
         220: 70,
 
     })
@@ -65,7 +65,7 @@ export default function CarController() {
 
     function accelerationRpmCalculator(rpm, gasPower, horsePower, gear, maxRpm, speed) {
         const bonus = (Number(gasPower)
-        *horsePower
+        *horsePower*3
         *(0.07-(0.01*gear))
         *((rpm/maxRpm)))
         /gear
@@ -116,13 +116,25 @@ export default function CarController() {
    
     
 
-    return <div className={styles.game}>
+    return <div>
+          <h1 className={styles.ok}>OK</h1>
+        <div className={styles.game}>
         <label className={rpm < 5000 ? styles.lowSpeed : styles.blinktext}>RPM:{rpm.toFixed(0)}</label><br></br>
         <progress value={rpm} max={maxRpm}></progress>
         <input type="range" value={gasPower} onChange={(e) => setGasPower(e.target.value)}></input>
         <button onClick={gearUpHandler}>UP</button>
         <h1>Gear: {gear}</h1>
         <h1>speed: {speed} km/h</h1>
-        <Car speed={__calculateWheelAnimationSpeed()}></Car>
+
+        <div className={styles.road}>
+            <div className={styles.road2}></div>
+        </div>
+
+
+      
+        </div>
+        <Car speed={__calculateWheelAnimationSpeed()} car={"second"}></Car>
+        <Car speed={__calculateWheelAnimationSpeed()} car={"first"}></Car>
+
         </div>
 }
