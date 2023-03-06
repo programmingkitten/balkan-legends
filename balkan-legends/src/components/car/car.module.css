@@ -1,0 +1,70 @@
+.car {
+    position: absolute;
+}
+
+.carWrapper {
+    position: relative;
+    margin-left: 30%;
+
+}
+
+.rims {
+    position: absolute;
+}
+
+.car img {
+    width: 18vw;
+}
+
+.rims img {
+    width: 2.7vw;
+    background-color: black;
+    border-radius: 100%;
+
+}
+
+
+.backTire {
+    position: absolute;
+    margin-top: 8.5vh;
+    margin-left: 2vw;
+
+}
+
+.frontTire {
+    position: absolute;
+    margin-top: 8.5vh;
+    margin-left: 13vw;        
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+.slow img {
+    animation: rotation 2s infinite linear;
+}
+
+.regular img {
+    animation: rotation 1s infinite linear;
+}
+
+.quick img {
+    animation: rotation 0.5s infinite linear;
+}
+
+.fast img {
+    animation: rotation 0.3s infinite linear;
+}
+
+.veryFast img {
+    animation: rotation 0.2s infinite linear;
+}
+
+
+

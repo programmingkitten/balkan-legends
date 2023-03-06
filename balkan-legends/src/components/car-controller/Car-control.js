@@ -1,8 +1,28 @@
 
 import React, { useEffect, useState } from "react";
+import Car from "../car/car";
 import styles from "./Car-controller.module.css"
 
 export default function CarController() {
+    const wheelSpinRatios = {
+        0: 'noMovement',
+        2: 'slow',
+        90: 'regular',
+        120: 'quick',
+        160: 'fast',
+        210: 'veryFast',
+    }
+
+    
+    const [revLimiter, setRevLimiter] = useState(false)
+    const [speedHisotry, setSpeedHistory] = useState([]);
+    const [gear, setGear] = useState(1)
+    const [count, setCount] = useState(0)
+    const [gasPower, setGasPower] = useState(0)
+    const [speed, setSpeed] = useState(2)
+    const [horsePower, setHorsePower] = useState(500);
+    const [rpm, setRpm] = useState(800);
+    const [maxRpm, setMaxRpm] = useState(7000)
 
     const [gearRatios, setGearRatios] = useState({
         0: 1,
@@ -25,6 +45,10 @@ export default function CarController() {
 
     })
 
+    function __calculateWheelAnimationSpeed() {
+        console.log(wheelSpinRatios[nearestInAnArray(Object.keys(wheelSpinRatios), speed)])
+        return wheelSpinRatios[nearestInAnArray(Object.keys(wheelSpinRatios), speed)]
+    }
 
     function nearestInAnArray(keys, number) {
         const closest = keys.reduce((a, b) => {
@@ -34,35 +58,6 @@ export default function CarController() {
         return closest
     }
 
-    // function windResistenceHandler(number ) {
-    //     const closest = Object.keys(windResistenceRations).reduce((a, b) => {
-    //         return Math.abs(b - number) < Math.abs(a - number) ? b : a;
-    //     });
-    //     console.log(closest)
-    //     return closest
-    // }
-    const [revLimiter, setRevLimiter] = useState(false)
-    const [speedHisotry, setSpeedHistory] = useState([]);
-    const [gear, setGear] = useState(1)
-    const [count, setCount] = useState(0)
-    const [gasPower, setGasPower] = useState(0)
-    const [speed, setSpeed] = useState(2)
-    const [horsePower, setHorsePower] = useState(500);
-    const [rpm, setRpm] = useState(800);
-    const [maxRpm, setMaxRpm] = useState(7000)
-
-
-    function revLimiterAnimation(rpm) {
-        const options = {
-            true: '7050',
-            false: '6900'
-        }
-        
-        if (rpm > 6999) {
-            setRevLimiter(!revLimiter)
-            return options[revLimiter]
-        } return rpm.toFixed(0);
-    };
 
     function gearUpRpmCalculator(maxRpm, gearRatios, gear, speed) {
         return maxRpm/gearRatios[gear+1]*speed
@@ -87,7 +82,7 @@ export default function CarController() {
             // 4000, 150, 
             const rpmChange = gearUpRpmCalculator(maxRpm, gearRatios, gear, speed)
             setRpm(rpmChange)
-            setGasPower(0)
+            setGasPower(1)
         }
     }
     
@@ -128,5 +123,6 @@ export default function CarController() {
         <button onClick={gearUpHandler}>UP</button>
         <h1>Gear: {gear}</h1>
         <h1>speed: {speed} km/h</h1>
+        <Car speed={__calculateWheelAnimationSpeed()}></Car>
         </div>
 }
