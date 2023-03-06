@@ -41,6 +41,7 @@ export default function CarController() {
     //     console.log(closest)
     //     return closest
     // }
+    const [revLimiter, setRevLimiter] = useState(false)
     const [speedHisotry, setSpeedHistory] = useState([]);
     const [gear, setGear] = useState(1)
     const [count, setCount] = useState(0)
@@ -50,6 +51,18 @@ export default function CarController() {
     const [rpm, setRpm] = useState(800);
     const [maxRpm, setMaxRpm] = useState(7000)
 
+
+    function revLimiterAnimation(rpm) {
+        const options = {
+            true: '7050',
+            false: '6900'
+        }
+        
+        if (rpm > 6999) {
+            setRevLimiter(!revLimiter)
+            return options[revLimiter]
+        } return rpm.toFixed(0);
+    };
 
     function gearUpRpmCalculator(maxRpm, gearRatios, gear, speed) {
         return maxRpm/gearRatios[gear+1]*speed
@@ -91,8 +104,7 @@ export default function CarController() {
                 setRpm(rpm-50)
             }
             
-            else {
-            }
+            
             setSpeedHistory(oldArray => [...oldArray, speed])
             if (speedHisotry.length > 2) {
                 if (speedHisotry.slice(-2)+20 > speedHisotry.slice(-1)) {
@@ -110,7 +122,7 @@ export default function CarController() {
     
 
     return <div className={styles.game}>
-        <label className={rpm < 5000 ? styles.lowSpeed : styles.highSpeed}>RPM:{rpm.toFixed(0) > 6999 ? "6950" : rpm.toFixed(0)}</label><br></br>
+        <label className={rpm < 5000 ? styles.lowSpeed : styles.blinktext}>RPM:{rpm.toFixed(0)}</label><br></br>
         <progress value={rpm} max={maxRpm}></progress>
         <input type="range" value={gasPower} onChange={(e) => setGasPower(e.target.value)}></input>
         <button onClick={gearUpHandler}>UP</button>

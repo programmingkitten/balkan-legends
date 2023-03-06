@@ -28,3 +28,14 @@ label {
     color: red;
     font-size: calc(1.3vw + 1.3em);
 }
+
+.blinktext {
+	 animation: blink-text 400ms linear infinite;
+     font-size: calc(1vw + 1em);
+
+}
+
+@keyframes blink-text {
+    99% { color: rgb(255, 0, 0); opacity: 1; }
+	0% { color: rgb(255, 255, 255);opacity: 1; }
+}
