@@ -63,15 +63,12 @@ label {
   background-repeat: repeat-x;
   z-index: 1;
   background-size: 20% 100%;
-  animation: road 5s linear infinite;
   float: left;
 }
 
-.road2 {
-  animation: road 1s linear infinite;
-  background-color: black;
-
-}
+/* .road3 {
+  animation: road 2s linear infinite;
+} */
 
 @keyframes road {
   100% {
@@ -79,3 +76,22 @@ label {
   }
 }
 
+
+.slow {
+  animation: road 8s linear infinite;
+}
+.regular {
+  animation: road 4s linear infinite;
+}
+
+.quick {
+  animation: road 3s linear infinite;
+}
+
+.fast {
+  animation: road 1.4s linear infinite;
+}
+
+.veryFast {
+  animation: road 0.9s linear infinite;
+}

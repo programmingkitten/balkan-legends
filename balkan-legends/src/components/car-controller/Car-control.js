@@ -126,7 +126,7 @@ export default function CarController() {
         <h1>Gear: {gear}</h1>
         <h1>speed: {speed} km/h</h1>
 
-        <div className={styles.road}>
+        <div className={`${styles.road} ${styles[__calculateWheelAnimationSpeed()]}`}>
             <div className={styles.road2}></div>
         </div>
 
